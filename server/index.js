@@ -25,5 +25,5 @@ app.use('/flowtrack/task', TaskRoute)
 //url 
 app.use('/flowtrack/user', AuthoRoutes)
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 4040
 app.listen(PORT, () => console.log(`Server Is Runnend On : ${PORT}`))

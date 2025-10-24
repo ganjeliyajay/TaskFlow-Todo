@@ -12,7 +12,7 @@ dotenv.config()
 
 app.use(json(), urlencoded({ extended: true }), cookieParser())
 app.use(cors({
-    origin: "http://localhost:5173", // frontend URL
+    origin: ["http://localhost:5173"], // frontend URL
     credentials: true               // allow sending cookies
 }))
 
@@ -25,5 +25,6 @@ app.use('/flowtrack/task', TaskRoute)
 //url 
 app.use('/flowtrack/user', AuthoRoutes)
 
-const PORT = process.env.PORT 
+const PORT = process.env.PORT || 4000
+
 app.listen(PORT, () => console.log(`Server Is Runnend On : ${PORT}`))

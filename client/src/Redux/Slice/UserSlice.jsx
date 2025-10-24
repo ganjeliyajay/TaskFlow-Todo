@@ -5,7 +5,6 @@ import { updateTask } from "../Features/TaskThunk";
 const UserSlice = createSlice({
     name: 'user',
     initialState: {
-        userId: null,
         users: [],
         error: '',
         process: false,
@@ -73,8 +72,6 @@ const UserSlice = createSlice({
                 state.error = action.payload
             })
 
-
-
             //auto login
             .addCase(autoLogin.pending, (state, action) => {
                 state.loading = true;
@@ -87,7 +84,6 @@ const UserSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message
             })
-
 
             //logout 
             .addCase(userLogout.pending, (state) => {

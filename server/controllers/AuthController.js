@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken'
 export const userRegister = async (req, res) => {
   try {
     const { name, email, password, conpass } = req.body;
+    console.log(req.body);
 
     if (!name) return res.status(400).json({ msg: "Please enter your name" });
     if (!email) return res.status(400).json({ msg: "Please enter your email" });
@@ -95,6 +96,7 @@ export const userRegister = async (req, res) => {
     res.status(201).json({ msg: "Registration successful!" }); // created
 
   } catch (err) {
+    console.log(err)
     res.status(500).json({ msg: "Server Error", error: err.message });
   }
 };
@@ -116,7 +118,7 @@ export const userLogin = async (req, res) => {
     res.status(200).json({
       process: true,
       user: { id: user._id },
-      msg : `OTP successfully sent to ${user.email}`
+      msg: `OTP successfully sent to ${user.email}`
     });
 
   } catch (err) {
@@ -264,7 +266,7 @@ export const changeDetail = async (req, res) => {
     await transporter.sendMail(mailOptions);
     await user.save();
 
-    res.status(200).json({ msg: "Details updated"});
+    res.status(200).json({ msg: "Details updated" });
 
   } catch (err) {
     res.status(500).json({ msg: "Server Error", error: err.message });

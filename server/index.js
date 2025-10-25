@@ -20,6 +20,10 @@ app.use(cors({
 // Call The Database
 db()
 
+app.get('/flowtrack/user/test', (req, res) => {
+    res.json({ msg: "Backend is alive!" });
+});
+
 
 app.use('/flowtrack/task', TaskRoute)
 //url 

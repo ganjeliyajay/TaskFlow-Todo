@@ -6,7 +6,7 @@ const user = import.meta.env.VITE_API_URL
 
 export const signup = createAsyncThunk('SignUp', async (data, { rejectWithValue }) => {
     try {
-        const res = await axios.post(`${user}/register`, data)
+        const res = await axios.post(`https://taskflow-todo-bern.onrender.com/flowtrack/user/register`, data)
         return res.data
     } catch (error) {
         console.log(error.response.data.msg)
@@ -16,7 +16,7 @@ export const signup = createAsyncThunk('SignUp', async (data, { rejectWithValue 
 
 export const login = createAsyncThunk('login', async (data, { rejectWithValue }) => {
     try {
-        const res = await axios.post(`${user}/login`, data)
+        const res = await axios.post(`https://taskflow-todo-bern.onrender.com/flowtrack/user/login`, data)
         return res.data
     } catch (error) {
         console.log(error)
@@ -26,7 +26,7 @@ export const login = createAsyncThunk('login', async (data, { rejectWithValue })
 
 export const changePass = createAsyncThunk('changePass', async (data, { rejectWithValue }) => {
     try {
-        const res = await axios.post(`${user}/updatepass`, data)
+        const res = await axios.post(`https://taskflow-todo-bern.onrender.com/flowtrack/user/updatepass`, data)
         console.log(res.data)
         return res.data
     } catch (error) {
@@ -36,7 +36,7 @@ export const changePass = createAsyncThunk('changePass', async (data, { rejectWi
 
 export const changeDetail = createAsyncThunk('changeDetailed', async (data, { rejectWithValue }) => {
     try {
-        const res = await axios.post(`${user}/updatedetail`, data)
+        const res = await axios.post(`https://taskflow-todo-bern.onrender.com/flowtrack/user/updatedetail`, data)
         return res.data
     } catch (error) {
         console.log(error)
@@ -48,7 +48,7 @@ export const changeDetail = createAsyncThunk('changeDetailed', async (data, { re
 export const sendOtp = createAsyncThunk('otpsend', async (id, { rejectWithValue }) => {
     try {
 
-        const res = await axios.post(`${user}/sendotp`, id)
+        const res = await axios.post(`https://taskflow-todo-bern.onrender.com/flowtrack/user/sendotp`, id)
         return res.data
 
     } catch (error) {
@@ -58,7 +58,7 @@ export const sendOtp = createAsyncThunk('otpsend', async (id, { rejectWithValue 
 
 export const resendOtp = createAsyncThunk('resendOtp', async (id, { rejectWithValue }) => {
     try {
-        const res = await axios.post(`${user}/resetsendotp`, id)
+        const res = await axios.post(`https://taskflow-todo-bern.onrender.com/flowtrack/user/resetsendotp`, id)
         return res.data
 
     } catch (error) {
@@ -68,7 +68,7 @@ export const resendOtp = createAsyncThunk('resendOtp', async (id, { rejectWithVa
 
 export const verifyOtp = createAsyncThunk('verifyOtp', async (data, { rejectWithValue }) => {
     try {
-        const res = await axios.post(`${user}/verifyotp`, data, { withCredentials: true })
+        const res = await axios.post(`https://taskflow-todo-bern.onrender.com/flowtrack/user/verifyotp`, data, { withCredentials: true })
         return res.data
     } catch (error) {
         return rejectWithValue(error.response.data.msg)
@@ -77,7 +77,7 @@ export const verifyOtp = createAsyncThunk('verifyOtp', async (data, { rejectWith
 
 export const autoLogin = createAsyncThunk('autologin', async (_, { rejectWithValue }) => {
     try {
-        const res = await axios.get(`${user}/login/me`, {withCredentials : true})
+        const res = await axios.get(`https://taskflow-todo-bern.onrender.com/flowtrack/user/login/me`, { withCredentials: true })
         return res.data.user
     } catch (error) {
         return rejectWithValue(error.response.data.msg)
@@ -86,7 +86,7 @@ export const autoLogin = createAsyncThunk('autologin', async (_, { rejectWithVal
 
 export const userLogout = createAsyncThunk('logout', async (_, { rejectWithValue }) => {
     try {
-        const res = await axios.post(`${user}/logout`,{}, {withCredentials : true})
+        const res = await axios.post(`https://taskflow-todo-bern.onrender.com/flowtrack/user/logout`, {}, { withCredentials: true })
         console.log(res)
         return true
     } catch (error) {

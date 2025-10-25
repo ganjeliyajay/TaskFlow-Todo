@@ -12,9 +12,9 @@ dotenv.config()
 
 app.use(json(), urlencoded({ extended: true }), cookieParser())
 app.use(cors({
-    origin: ["http://localhost:5173"], // frontend URL
-    credentials: true               // allow sending cookies
-}))
+    origin: ['http://localhost:5173'], // your Vite frontend
+    credentials: true,
+}));
 
 
 // Call The Database

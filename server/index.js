@@ -12,7 +12,7 @@ dotenv.config()
 
 app.use(json(), urlencoded({ extended: true }), cookieParser())
 app.use(cors({
-    origin: ['http://localhost:5173'], // your Vite frontend
+    origin: ['https://taskflow-todo-web.netlify.app', 'http://localhost:5173'], // your Vite frontend
     credentials: true,
 }));
 

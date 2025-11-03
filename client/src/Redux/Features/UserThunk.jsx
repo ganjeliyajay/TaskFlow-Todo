@@ -1,12 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { data } from "react-router-dom";
 
 const user = import.meta.env.VITE_API_URL
 
 export const signup = createAsyncThunk('SignUp', async (data, { rejectWithValue }) => {
     try {
-        const res = await axios.post(`${user}/register`, data);
+        const res = await axios.post(`${user}/register`, data, { withCredentials: true });
         return res.data
     } catch (error) {
         console.log(error.response.data.msg)
@@ -39,8 +38,6 @@ export const changeDetail = createAsyncThunk('changeDetailed', async (data, { re
         const res = await axios.post(`${user}/updatedetail`, data)
         return res.data
     } catch (error) {
-        console.log(error)
-        console.log(rejectWithValue(error.response.data.msg))
         return rejectWithValue(error.response.data.msg)
     }
 })
@@ -58,7 +55,7 @@ export const sendOtp = createAsyncThunk('otpsend', async (id, { rejectWithValue 
 
 export const resendOtp = createAsyncThunk('resendOtp', async (id, { rejectWithValue }) => {
     try {
-        const res = await axios.post(`${user}/resetsendotp`, id)
+        const res = await axios.post(`${user}/resetsendotp`, id, { withCredentials: true })
         return res.data
 
     } catch (error) {

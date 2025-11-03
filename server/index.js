@@ -10,9 +10,16 @@ import cookieParser from "cookie-parser"
 const app = express()
 dotenv.config()
 
-app.use(json(), urlencoded({ extended: true }), cookieParser())
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+
+const isProduction = process.env.NODE_ENV === "production";
 app.use(cors({
-    origin: ['https://taskflow-todo-web.netlify.app', 'http://localhost:5173'], // your Vite frontend
+    origin: isProduction
+        ? [process.env.CLIENT_URL]                // ✅ only frontend URL on Render
+        : ["http://localhost:5173"],             // ✅ local dev
     credentials: true,
 }));
 
@@ -29,6 +36,6 @@ app.use('/flowtrack/task', TaskRoute)
 //url 
 app.use('/flowtrack/user', AuthoRoutes)
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 4040
 
 app.listen(PORT, () => console.log(`Server Is Runnend On : ${PORT}`))
